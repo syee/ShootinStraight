@@ -32,10 +32,17 @@ def generate_shotChart(player):
 	# print players.ix[0]
 	if (not (players.ix[players['PERSON_ID'] == player].empty)):
 		print "Hello"
+		print players.ix[players['PERSON_ID'] == player]
+		print
+		print players.ix[players['PERSON_ID'] == player].values.tolist()
+		print
+		print players.ix[players['PERSON_ID'] == player].values[0]
+		print 
 		# prints player's name DISPLAY_LAST_COMMA_FIRST
-		playerName =  players.ix[players['PERSON_ID'] == player].iloc[0][0]
+		playerName =  players.ix[players['PERSON_ID'] == player].values.tolist()[0][0]
+		print playerName
 		playerID =  players.ix[players['PERSON_ID'] == player].iloc[0][3]
-		savorgas2.generate_shot_chart(playerID, playerName, year1, year2)
+		# savorgas2.generate_shot_chart(playerID, playerName, year1, year2)
 		# print players.ix[players['PERSON_ID'] == player]['DISPLAY_LAST_COMMA_FIRST'] + " ME"
 
 def generate_shotChart2(player):
