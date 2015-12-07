@@ -2,6 +2,8 @@ import goldsberry
 import pandas as pd
 import requests
 import savorgas2
+import psycopg2
+from sqlalchemy import create_engine
 
 #set pandas data frame display options
 pd.set_option("display.max_columns", 50)
@@ -9,12 +11,12 @@ pd.set_option("display.max_rows", 50)
 
 #obtain the game ids
 def init_players(year):
-	players = goldsberry.PlayerList(AllTime=True)
+	players = goldsberry.PlayerList()
 	players = pd.DataFrame(players)
-
+	print players
 	# engine = create_engine('postgresql:///ShootinStraight')
-	# newTable = "Players_" + year
-	# df.to_sql(newTable, engine)
+	# newTable = "players_" + str(year)
+	# players.to_sql(newTable, engine)
 	return players
 
 def init_games():
@@ -22,7 +24,7 @@ def init_games():
 	gameids = pd.DataFrame(gameids)
 
 	engine = create_engine('postgresql:///ShootinStraight')
-	newTable = "Games"
+	newTable = "games"
 	df.to_sql(newTable, engine)
 	return gameids
 
@@ -45,21 +47,36 @@ def generate_shotChart(player):
 		# savorgas2.generate_shot_chart(playerID, playerName, year1, year2)
 		# print players.ix[players['PERSON_ID'] == player]['DISPLAY_LAST_COMMA_FIRST'] + " ME"
 
-def generate_shotChart2(player):
-	year1 = 2014
-	year2 = year1 + 1
+def generate_shot_chart2(playerID, playerName, year1, year2):
+	# year1 = 2014
+	# year2 = year1 + 1
 	# print players.ix[0]
 	# prints player's name DISPLAY_LAST_COMMA_FIRST
 	# playerName =  players.ix[players['PERSON_ID'] == player].iloc[0][0]
 	# playerID =  players.ix[players['PERSON_ID'] == player].iloc[0][3]
-	savorgas2.generate_shot_chart(201935, "Harden, James", year1, year2)
+	savorgas2.generate_shot_chart(playerID, playerName, year1, year2)
 	# print players.ix[players['PERSON_ID'] == player]['DISPLAY_LAST_COMMA_FIRST'] + " ME"
 
 
 
-players = init_players(2014)
+# players = init_players(2014)
 # players.to_csv("shots.csv")
-# print players.ix[players['DISPLAY_LAST_COMMA_FIRST'] == 'Exum, Dante']
-generate_shotChart(201935)
+DB = psycopg2.connect("dbname=ShootinStraight")
+c = DB.cursor()
+query = "SELECT * from players_2014 where \"DISPLAY_LAST_COMMA_FIRST\"='Harden, James'"
+c.execute(query)
+for row in c.fetchall():
+	# print row
+	# print row[1]
+	# print row[10]
+	generate_shot_chart2(int(row[4]), str(row[1]), 2014, 2015)
+# 	generate_shot_chart2(1610612737, 'Korver, Kyle', 2014, 2015)
+
+
+# variableName = 'Korver, Kyle'
+# playerIDS = players.ix[players['DISPLAY_LAST_COMMA_FIRST'] == variableName].values[0][3]
+# print playerIDS
+# print variableName
+# generate_shot_chart2(playerIDS, variableName, 2014, 2015)
 
 # init_games()
