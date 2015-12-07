@@ -29,17 +29,6 @@ with pd.option_context('display.max_columns', None):
 
 sns.set_style("white")
 sns.set_color_codes()
-# plt.figure(figsize=(12,11))
-# plt.scatter(shot_df.LOC_X, shot_df.LOC_Y)
-# plt.show()
-
-# right = shot_df[shot_df.SHOT_ZONE_AREA == "Right Side(R)"]
-# plt.figure(figsize=(12,11))
-# plt.scatter(right.LOC_X, right.LOC_Y)
-# plt.xlim(-300,300)
-# plt.ylim(-100,500)
-# plt.show()
-
 
 from matplotlib.patches import Circle, Rectangle, Arc
 
@@ -74,41 +63,13 @@ def draw_court(ax=None, color='black', lw=2, outer_lines=False):
 
 	return ax
 
-# plt.figure(figsize=(12,11))
-# draw_court(outer_lines=True)
-# plt.xlim(-300,300)
-# plt.ylim(-100,500)
-# plt.show()
-
-# plt.figure(figsize=(12,11))
-# plt.scatter(shot_df.LOC_X, shot_df.LOC_Y)
-# draw_court(outer_lines=True)
-# plt.xlim(300,-300)
-# plt.ylim(-100,500)
-# plt.show()
-
-# plt.figure(figsize=(12,11))
-# plt.scatter(shot_df.LOC_X, shot_df.LOC_Y)
-# draw_court()
-# # Adjust plot limits to just fit in half court
-# plt.xlim(-250,250)
-# # Descending values along th y axis from bottom to top
-# # in order to place the hoop by the top of plot
-# plt.ylim(422.5, -47.5)
-# # get rid of axis tick labels
-# # plt.tick_params(labelbottom=False, labelleft=False)
-# plt.show()
-
 # create our jointplot
 
-cmap=plt.cm.gist_heat_r
-joint_shot_chart = sns.jointplot(shot_df.LOC_X, shot_df.LOC_Y, stat_func=None,
-                                 kind='hex', space=0, color=cmap(.2), cmap=cmap)
-
+joint_shot_chart = sns.jointplot(shot_df.LOC_X, shot_df.LOC_Y, stat_func=None, kind='scatter', space=0, alpha=0.5)
 joint_shot_chart.fig.set_size_inches(12,11)
 
 # A joint plot has 3 Axes, the first one called ax_joint 
-# is the one we want to draw our court onto 
+# is the one we want to draw our court onto and adjust some other settings
 ax = joint_shot_chart.ax_joint
 draw_court(ax)
 
@@ -123,8 +84,13 @@ ax.set_ylabel('')
 ax.tick_params(labelbottom='off', labelleft='off')
 
 # Add a title
-ax.set_title('FGA 2014-15 Reg. Season', y=1.2, fontsize=14)
+ax.set_title('\nJames Harden FGA 2014-15 Reg. Season', 
+             y=1.2, fontsize=18)
 
+# Add Data Scource and Author
+ax.text(-250,445,'Data Source: stats.nba.com'
+        '\nAuthor: Savvas Tjortjoglou (savvastjortjoglou.com)',
+        fontsize=12)
 
 plt.show()
 
