@@ -5,27 +5,28 @@ import savorgas2
 import psycopg2
 from sqlalchemy import create_engine
 
+
 #set pandas data frame display options
 pd.set_option("display.max_columns", 50)
 pd.set_option("display.max_rows", 50)
 
 #obtain the game ids
 def init_players(year):
-	players = goldsberry.PlayerList()
-	players = pd.DataFrame(players)
-	print players
+	players_2014 = goldsberry.PlayerList()
+	players_2014 = pd.DataFrame(players_2014)
+	# print players
 	# engine = create_engine('postgresql:///ShootinStraight')
 	# newTable = "players_" + str(year)
 	# players.to_sql(newTable, engine)
-	return players
+	return players_2014
 
 def init_games():
 	gameids = goldsberry.GameIDs()
 	gameids = pd.DataFrame(gameids)
 
-	engine = create_engine('postgresql:///ShootinStraight')
-	newTable = "games"
-	df.to_sql(newTable, engine)
+	# engine = create_engine('postgresql:///ShootinStraight')
+	# newTable = "games"
+	# gameids.to_sql(newTable, engine)
 	return gameids
 
 def generate_shotChart(player):
@@ -55,6 +56,7 @@ def generate_shot_chart2(playerID, playerName, year1, year2):
 	# playerName =  players.ix[players['PERSON_ID'] == player].iloc[0][0]
 	# playerID =  players.ix[players['PERSON_ID'] == player].iloc[0][3]
 	savorgas2.generate_shot_chart(playerID, playerName, year1, year2)
+	savorgas2.generate_shot_chart_makes_misses(playerID, playerName, year1, year2)
 	# print players.ix[players['PERSON_ID'] == player]['DISPLAY_LAST_COMMA_FIRST'] + " ME"
 
 
@@ -63,14 +65,14 @@ def generate_shot_chart2(playerID, playerName, year1, year2):
 # players.to_csv("shots.csv")
 DB = psycopg2.connect("dbname=ShootinStraight")
 c = DB.cursor()
-query = "SELECT * from players_2014 where \"DISPLAY_LAST_COMMA_FIRST\"='Harden, James'"
+query = "SELECT * from players_2014 where \"DISPLAY_LAST_COMMA_FIRST\"='Bryant, Kobe'"
 c.execute(query)
 for row in c.fetchall():
 	# print row
-	# print row[1]
-	# print row[10]
-	generate_shot_chart2(int(row[4]), str(row[1]), 2014, 2015)
-# 	generate_shot_chart2(1610612737, 'Korver, Kyle', 2014, 2015)
+	print row[4]
+	print row[1]
+	generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016)
+	# generate_shot_chart2(201935, 'Harden, James', 2014, 2015)
 
 
 # variableName = 'Korver, Kyle'
