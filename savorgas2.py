@@ -228,7 +228,7 @@ def find_shootingPcts(shot_df, gridNum):
 
     # Calculate total points
     points = calculateTotalPointsFromField(shot_df)
-    ShootingPctLocs = hb_made.get_array() / 0.021 / points
+    ShootingPctLocs = hb_made.get_array() / points
 
     #compute shooting percentage
     # ShootingPctLocs = hb_made.get_array() / hb_shot.get_array()
@@ -318,7 +318,7 @@ def generate_shot_chart_makes_misses(playerID, playerName, startYear, endYear, p
             yCords.append(shotNumber.get_offsets()[a][0])
             xCords.append(shotNumber.get_offsets()[a][1])
             zCordsHere.append(zCords[a])
-            colors.append(cmap(zCords[a]))
+            colors.append(cmap(zCords[a]/0.021))
             # ax.bar(yCords, zCordsHere, xCords, zdir='y', color = 'r', alpha = 0.8)
         # for b in range (0, 4):
         #     for c in range (0, 4):
@@ -355,9 +355,9 @@ def generate_shot_chart_makes_misses(playerID, playerName, startYear, endYear, p
     #draw color bar
     ax2 = fig.add_axes([0.92, 0.1, 0.02, 0.8])
     cb = matplotlib.colorbar.ColorbarBase(ax2,cmap=cmap, orientation='vertical')
-    cb.set_label('Shooting %')
-    cb.set_ticks([0.0, 0.25, 0.5, 0.75, 1.0])
-    cb.set_ticklabels(['0%','25%', '50%','75%', '100%'])
+    cb.set_label('Relative Frequency of Points')
+    cb.set_ticks([0.0, 0.10, 0.20, 0.75, 0.90])
+    cb.set_ticklabels(['0%','0.10%', '0.20%','1.5%', '2%'])
 
 
 
