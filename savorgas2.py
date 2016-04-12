@@ -18,15 +18,8 @@ import pickle
 
 null = ''
 
-# # color scheme
-# cdict = {
-#     'blue': [(0.0, 0.6313725709915161, 0.6313725709915161), (0.25, 0.4470588266849518, 0.4470588266849518), (0.5, 0.29019609093666077, 0.29019609093666077), (0.75, 0.11372549086809158, 0.11372549086809158), (1.0, 0.05098039284348488, 0.05098039284348488)],
-#     'green': [(0.0, 0.7333333492279053, 0.7333333492279053), (0.25, 0.572549045085907, 0.572549045085907), (0.5, 0.4156862795352936, 0.4156862795352936), (0.75, 0.0941176488995552, 0.0941176488995552), (1.0, 0.0, 0.0)],
-#     'red': [(0.0, 0.9882352948188782, 0.9882352948188782), (0.25, 0.9882352948188782, 0.9882352948188782), (0.5, 0.9843137264251709, 0.9843137264251709), (0.75, 0.7960784435272217, 0.7960784435272217), (1.0, 0.40392157435417175, 0.40392157435417175)]
-
-# }
-
-cdict = {'red':   [ (0.0,  1.0, 1.0),
+# Kobe based
+cdict = {'red': [ (0.0,  1.0, 1.0),
                 (0.0304,  0.9882352948188782, 0.9882352948188782),
                 (0.0607,  0.9843137264251709, 0.9843137264251709),
                 (0.0910,  0.8843137264251709, 0.8843137264251709),
@@ -36,7 +29,7 @@ cdict = {'red':   [ (0.0,  1.0, 1.0),
                 (0.2822,  0.58, 0.58),
                 (0.4849,  0.48, 0.48),
                 (0.6061,  0.38, 0.38),
-                   (1.0,  0.3, 0.3)],
+                (1.0,  0.3, 0.3)],
 
          'green': [(0.0,  1.0, 1.0),
                 (0.0304,  0.7333333492279053, 0.7333333492279053),
@@ -46,9 +39,9 @@ cdict = {'red':   [ (0.0,  1.0, 1.0),
                 (0.1516,  0.10, 0.10),
                 (0.222,  0.04, 0.04),
                 (0.2822,  0.02, 0.02),
-                   (0.4849, 0.01, 0.01),
-                   (0.6061, 0.001, 0.001),
-                   (1.0,  0, 0)],
+                (0.4849, 0.01, 0.01),
+                (0.6061, 0.001, 0.001),
+                (1.0,  0, 0)],
 
          'blue':  [(0.0,  1.0, 1.0),
                 (0.0304,  0.6313725709915161, 0.6313725709915161),
@@ -60,7 +53,7 @@ cdict = {'red':   [ (0.0,  1.0, 1.0),
                 (0.2822,  0.05, 0.05),
                 (0.4849,  0.04, 0.04),
                 (0.6061,  0.03, 0.03),
-                   (1.0,  0, 0)]}
+                (1.0,  0, 0)]}
 
 
 
@@ -101,12 +94,6 @@ cdict = {'red':   [ (0.0,  1.0, 1.0),
 #                 (0.6061,  0.03, 0.03),
 #                    (1.0,  0, 0)]}
 
-# #     'red': [(0.0, 0.9882352948188782, 0.9882352948188782), (0.25, 0.9882352948188782, 0.9882352948188782), (0.5, 0.9843137264251709, 0.9843137264251709), (0.75, 0.7960784435272217, 0.7960784435272217), (1.0, 0.40392157435417175, 0.40392157435417175)]
-
-
-# #     'red': [(0.0, 0.9882352948188782, 0.9882352948188782), (0.006, 0.9882352948188782, 0.9882352948188782), (0.012, 0.9843137264251709, 0.9843137264251709), (0.018, 0.7960784435272217, 0.7960784435272217), (0.024, 0.40392157435417175, 0.40392157435417175),(1.0, 0.40392157435417175, 0.40392157435417175)]
-
-
 mymap = matplotlib.colors.LinearSegmentedColormap('my_colormap', cdict, 1024)
 
 
@@ -124,7 +111,7 @@ def generate_shot_chart_url(player, startYear, endYear):
     'owZones=0'  
     return shot_chart_url
 
-def draw_court(ax=None, color='black', lw=2, outer_lines=False):
+def draw_court(ax=None, threeD=False, color='black', lw=2, outer_lines=True):
     if ax is None:
         ax = plt.gca()
 
@@ -149,50 +136,18 @@ def draw_court(ax=None, color='black', lw=2, outer_lines=False):
         outer_lines = Rectangle((-250, -47.5), 500, 470, linewidth=lw, color=color, fill=False)
         court_elements.append(outer_lines)
 
-
     for element in court_elements:
         ax.add_patch(element)
-
-    return ax
-
-def draw_court3D(ax=None, color='black', lw=2, outer_lines=False):
-    if ax is None:
-        ax = plt.gca()
-
-    hoop = Circle((0,0), radius=7.5, linewidth=lw, color=color, fill=False)
-    backboard = Rectangle((-30,-7.5), 60, -1, linewidth=lw, color=color)
-    outer_box = Rectangle((-80, -47.5), 160, 190, linewidth=lw, color=color, fill=False)
-    inner_box = Rectangle((-60, -47.5), 120, 190, linewidth=lw, color=color, fill=False)
-    top_free_throw = Arc((0, 142.5), 120, 120, theta1=0, theta2=180, linewidth=lw, color=color, fill=False)
-    bottom_free_throw = Arc((0, 142.5), 120, 120, theta1=180, theta2=0, linewidth=lw, color=color, linestyle='dashed')
-    restricted = Arc((0, 0), 80, 80, theta1=0, theta2=180, linewidth=lw, color=color)
-    corner_three_a = Rectangle((-220, -47.5), 0, 140, linewidth=lw, color=color)
-    corner_three_b = Rectangle((220, -47.5), 0, 140, linewidth=lw, color=color)
-    three_arc = Arc((0, 0), 475, 475, theta1=22, theta2=158, linewidth=lw, color=color)
-    center_outer_arc = Arc((0, 422.5), 120, 120, theta1=180, theta2=0, linewidth=lw, color=color)
-    center_inner_arc = Arc((0, 422.5), 40, 40, theta1=180, theta2=0, linewidth=lw, color=color)
-    court_elements = [hoop, backboard, outer_box, inner_box, top_free_throw,
-                      bottom_free_throw, restricted, corner_three_a,
-                      corner_three_b, three_arc, center_outer_arc,
-                      center_inner_arc]
-
-    if outer_lines:
-        outer_lines = Rectangle((-250, -47.5), 500, 470, linewidth=lw, color=color, fill=False)
-        court_elements.append(outer_lines)
-
-
-    for element in court_elements:
-        ax.add_patch(element)
-        art3d.pathpatch_2d_to_3d(element, z=0, zdir="z")
+        if threeD:
+            art3d.pathpatch_2d_to_3d(element, z=0, zdir="z")
 
     return ax
 
 def generate_shot_chart(playerID, playerName, startYear, endYear):
     shot_chart_url = generate_shot_chart_url(playerID, startYear, endYear)
-    # req = requests.Request('GET', shot_chart_url, headers={'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36',  'referer': 'http://stats.nba.com/scores/'})
-    print shot_chart_url
+
+    # Way to retrieve data before nba.com restricted API access
     # response = requests.get(shot_chart_url)
-    # print response
     # headers = response.json()['resultSets'][0]['headers']
     # shots = response.json()['resultSets'][0]['rowSet']
 
@@ -207,8 +162,6 @@ def generate_shot_chart(playerID, playerName, startYear, endYear):
 
     headers = response['resultSets'][0]['headers']
     shots = response['resultSets'][0]['rowSet']
-    
-
     shot_df = pd.DataFrame(shots, columns=headers)
 
     sns.set_style("white")
@@ -224,8 +177,8 @@ def generate_shot_chart(playerID, playerName, startYear, endYear):
 
     # Adjust the axis limits and orientation of the plot in order
     # to plot half court, with the hoop by the top of the plot
-    ax.set_xlim(-250,250)
-    ax.set_ylim(422.5, -47.5)
+    ax.set_xlim(-275,275)
+    ax.set_ylim(425, -50)
 
     # Get rid of axis labels and tick marks
     ax.set_xlabel('')
@@ -234,11 +187,11 @@ def generate_shot_chart(playerID, playerName, startYear, endYear):
 
     # Add a title
     ax.set_title('\n' + playerName + ' FGA ' + str(startYear) + '-' + str(endYear%100) + ' Reg. Season', 
-                 y=1.2, fontsize=18)
+                 y = 1.2, fontsize=18)
 
     # Add Data Scource and Author
-    ax.text(-250,465,'Data Source: stats.nba.com'
-            '\nCredit to Savvas Tjortjoglou (savvastjortjoglou.com)\nBradley Fay (https://github.com/bradleyfay/py-Goldsberry)',
+    ax.text(-250,485,'Data Source: stats.nba.com'
+            '\nCredit to Savvas Tjortjoglou (savvastjortjoglou.com)\nBradley Fay (https://github.com/bradleyfay/py-Goldsberry)\nDan Vatterott (http://www.danvatterott.com/)',
             fontsize=12)
 
     plt.show()
@@ -345,24 +298,17 @@ def generate_shot_chart_makes_misses(playerID, playerName, startYear, endYear, p
     colors = []
     norm = matplotlib.colors.Normalize(vmin = 0.0, vmax = 0.025)
     ax = fig.add_subplot(111, projection='3d')
-    for a in range (0, 1068):
+    for a in range (0, len(zCords)):
+        print a
         if zCords[a] != 0:
             yCords.append(shotNumber.get_offsets()[a][0])
             xCords.append(shotNumber.get_offsets()[a][1])
             zCordsHere.append(zCords[a])
             colors.append(cmap(zCords[a]/0.021))
-            # ax.bar(yCords, zCordsHere, xCords, zdir='y', color = 'r', alpha = 0.8)
-        # for b in range (0, 4):
-        #     for c in range (0, 4):
-        #         yCords.append(shotNumber.get_offsets()[a][0] - 2.77777 * 2 + b * 2.77777)
-        #         xCords.append(shotNumber.get_offsets()[a][1] - 2.77777 * 2 + c * 2.77777)
-        #         zCordsHere.append(zCords[a])
 
-    # ax.bar(zCordsHere, yCords, xCords, zdir='x', color = 'r', alpha = 0.8)
     ax.bar(yCords, zCordsHere, xCords, width = 10, zdir='y', color = colors, alpha = 0.8)
     pickle.dump(ax, file('myplot.pickle', 'w'))
 
-    # ax.bar(yCords, xCords, zCordsHere, zdir='z', color = 'r', alpha = 0.8)
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
@@ -372,17 +318,9 @@ def generate_shot_chart_makes_misses(playerID, playerName, startYear, endYear, p
     # ax.add_collection3d(hb_made, zs=shotNumber.get_array(), zdir='y')
 
     # ax = plt.axes([0.1, 0.1, 0.8, 0.8]) #where to place the plot within the figure
-    draw_court3D(ax, outer_lines=False)
+    draw_court(ax, threeD = True, outer_lines=True)
     plt.xlim(-250,250)
-    plt.ylim(400, -25)
-
-
-
-    # for i, shots in enumerate(ShootingPctLocs):
-    #     restricted = Circle(shotNumber.get_offsets()[i], radius=shotNumber.get_array()[i], color=cmap(shots),alpha=0.8, fill=True)
-    #     if restricted.radius > 240/gridNum: 
-    #         restricted.radius=240/gridNum
-    #     ax.add_patch(restricted)
+    plt.ylim(422.5, -50)
 
     #draw color bar
     ax2 = fig.add_axes([0.92, 0.1, 0.02, 0.8])
@@ -398,8 +336,8 @@ def generate_shot_chart_makes_misses(playerID, playerName, startYear, endYear, p
                  y=1.2, fontsize=18)
 
     # Add Data Scource and Author
-    # ax.text(-250,465,'Data Source: stats.nba.com'
-    #         '\nCredit to Savvas Tjortjoglou (savvastjortjoglou.com)\nBradley Fay (https://github.com/bradleyfay/py-Goldsberry)\nDan Vatterott',
+    # ax.text(-250,465,-0.01,'Data Source: stats.nba.com'
+    #         '\nCredit to Savvas Tjortjoglou (savvastjortjoglou.com)\nBradley Fay (https://github.com/bradleyfay/py-Goldsberry)\nDan Vatterott (http://www.danvatterott.com/)',
     #         fontsize=12)
 
     plt.show()
