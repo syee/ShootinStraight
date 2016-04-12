@@ -9,6 +9,7 @@ import json
 import numpy
 import xlrd
 import xlwt
+import mpl_toolkits.mplot3d.art3d as art3d
 from matplotlib.patches import Circle, Rectangle, Arc
 from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
@@ -120,8 +121,7 @@ def generate_shot_chart_url(player, startYear, endYear):
     'sMinus=N&Position=&Rank=N&RookieYear=&Season=' + str(startYear) + '-' + str((endYear%100)) + '&Seas'\
     'onSegment=&SeasonType=Regular+Season&TeamID=0&VsConferenc'\
     'e=&VsDivision=&mode=Advanced&showDetails=0&showShots=1&sh'\
-    'owZones=0'
-    print shot_chart_url    
+    'owZones=0'  
     return shot_chart_url
 
 def draw_court(ax=None, color='black', lw=2, outer_lines=False):
@@ -152,6 +152,38 @@ def draw_court(ax=None, color='black', lw=2, outer_lines=False):
 
     for element in court_elements:
         ax.add_patch(element)
+
+    return ax
+
+def draw_court3D(ax=None, color='black', lw=2, outer_lines=False):
+    if ax is None:
+        ax = plt.gca()
+
+    hoop = Circle((0,0), radius=7.5, linewidth=lw, color=color, fill=False)
+    backboard = Rectangle((-30,-7.5), 60, -1, linewidth=lw, color=color)
+    outer_box = Rectangle((-80, -47.5), 160, 190, linewidth=lw, color=color, fill=False)
+    inner_box = Rectangle((-60, -47.5), 120, 190, linewidth=lw, color=color, fill=False)
+    top_free_throw = Arc((0, 142.5), 120, 120, theta1=0, theta2=180, linewidth=lw, color=color, fill=False)
+    bottom_free_throw = Arc((0, 142.5), 120, 120, theta1=180, theta2=0, linewidth=lw, color=color, linestyle='dashed')
+    restricted = Arc((0, 0), 80, 80, theta1=0, theta2=180, linewidth=lw, color=color)
+    corner_three_a = Rectangle((-220, -47.5), 0, 140, linewidth=lw, color=color)
+    corner_three_b = Rectangle((220, -47.5), 0, 140, linewidth=lw, color=color)
+    three_arc = Arc((0, 0), 475, 475, theta1=22, theta2=158, linewidth=lw, color=color)
+    center_outer_arc = Arc((0, 422.5), 120, 120, theta1=180, theta2=0, linewidth=lw, color=color)
+    center_inner_arc = Arc((0, 422.5), 40, 40, theta1=180, theta2=0, linewidth=lw, color=color)
+    court_elements = [hoop, backboard, outer_box, inner_box, top_free_throw,
+                      bottom_free_throw, restricted, corner_three_a,
+                      corner_three_b, three_arc, center_outer_arc,
+                      center_inner_arc]
+
+    if outer_lines:
+        outer_lines = Rectangle((-250, -47.5), 500, 470, linewidth=lw, color=color, fill=False)
+        court_elements.append(outer_lines)
+
+
+    for element in court_elements:
+        ax.add_patch(element)
+        art3d.pathpatch_2d_to_3d(element, z=0, zdir="z")
 
     return ax
 
@@ -340,7 +372,7 @@ def generate_shot_chart_makes_misses(playerID, playerName, startYear, endYear, p
     # ax.add_collection3d(hb_made, zs=shotNumber.get_array(), zdir='y')
 
     # ax = plt.axes([0.1, 0.1, 0.8, 0.8]) #where to place the plot within the figure
-    # draw_court(outer_lines=False)
+    draw_court3D(ax, outer_lines=False)
     plt.xlim(-250,250)
     plt.ylim(400, -25)
 
