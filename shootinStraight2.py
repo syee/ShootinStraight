@@ -55,8 +55,8 @@ def generate_shot_chart2(playerID, playerName, year1, year2):
 	# prints player's name DISPLAY_LAST_COMMA_FIRST
 	# playerName =  players.ix[players['PERSON_ID'] == player].iloc[0][0]
 	# playerID =  players.ix[players['PERSON_ID'] == player].iloc[0][3]
-	savorgas2.generate_shot_chart(playerID, playerName, year1, year2)
-	savorgas2.generate_shot_chart_makes_misses(playerID, playerName, year1, year2)
+	savorgas2.generate_shot_chartBasic(playerID, playerName, year1, year2)
+	savorgas2.generate_shot_chartAdvanced(playerID, playerName, year1, year2, chartType = "fieldGoal", threeD = False)
 	# print players.ix[players['PERSON_ID'] == player]['DISPLAY_LAST_COMMA_FIRST'] + " ME"
 
 
@@ -71,8 +71,8 @@ for row in c.fetchall():
 	# print row
 	print row[4]
 	print row[1]
-	generate_shot_chart2(int(row[4]), str(row[1]), 2014, 2015)
-	# generate_shot_chart2(201935, 'Harden, James', 2014, 2015)
+	generate_shot_chart2(203476, "Dieng, Gorgui", 2015, 2016)
+	# generate_shot_chart2(int(row[4]), str(row[1]), 2014, 2015)
 
 
 # variableName = 'Korver, Kyle'
