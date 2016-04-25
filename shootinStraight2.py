@@ -48,15 +48,20 @@ def generate_shotChart(player):
 		# savorgas2.generate_shot_chart(playerID, playerName, year1, year2)
 		# print players.ix[players['PERSON_ID'] == player]['DISPLAY_LAST_COMMA_FIRST'] + " ME"
 
-def generate_shot_chart2(playerID, playerName, year1, year2):
+def generate_shot_chart2(playerID, playerName, year1, year2, chartType, threeD):
 	# year1 = 2014
 	# year2 = year1 + 1
 	# print players.ix[0]
 	# prints player's name DISPLAY_LAST_COMMA_FIRST
 	# playerName =  players.ix[players['PERSON_ID'] == player].iloc[0][0]
 	# playerID =  players.ix[players['PERSON_ID'] == player].iloc[0][3]
-	savorgas2.generate_shot_chartBasic(playerID, playerName, year1, year2)
-	savorgas2.generate_shot_chartAdvanced(playerID, playerName, year1, year2, chartType = "fieldGoal", threeD = False)
+	# savorgas2.generate_shot_chartBasic(playerID, playerName, year1, year2)
+	savorgas2.generate_shot_chartAdvanced(playerID, playerName, year1, year2, chartType = chartType, threeD = threeD)
+
+
+
+	# savorgas2.generate_shot_chartAdvanced(203476, "Dieng, Gorgui", 2015, 2016, chartType = "proportionPoints", threeD = threeD)
+
 	# print players.ix[players['PERSON_ID'] == player]['DISPLAY_LAST_COMMA_FIRST'] + " ME"
 
 
@@ -71,14 +76,11 @@ for row in c.fetchall():
 	# print row
 	print row[4]
 	print row[1]
-	generate_shot_chart2(203476, "Dieng, Gorgui", 2015, 2016)
-	# generate_shot_chart2(int(row[4]), str(row[1]), 2014, 2015)
-
-
-# variableName = 'Korver, Kyle'
-# playerIDS = players.ix[players['DISPLAY_LAST_COMMA_FIRST'] == variableName].values[0][3]
-# print playerIDS
-# print variableName
-# generate_shot_chart2(playerIDS, variableName, 2014, 2015)
+	# savorgas2.generate_shot_chartBasic(int(row[4]), str(row[1]), 2015, 2016)
+	# generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "fieldGoal", False)
+	# generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "proportionPoints", False)
+	generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "proportionPoints", False)
+	savorgas2.generate_shot_chartAdvanced(203476, "Dieng, Gorgui", 2015, 2016, chartType = "proportionPoints", threeD = True)
+	
 
 # init_games()
