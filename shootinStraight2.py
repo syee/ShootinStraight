@@ -79,6 +79,7 @@ for row in c.fetchall():
 	# savorgas2.generate_shot_chartBasic(int(row[4]), str(row[1]), 2015, 2016)
 	# generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "fieldGoal", False)
 	# generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "proportionPoints", False)
+	savorgas2.generate_shot_chart_makesMisses(int(row[4]), str(row[1]), 2015, 2016)
 	generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "proportionPoints", False)
 	savorgas2.generate_shot_chartAdvanced(203476, "Dieng, Gorgui", 2015, 2016, chartType = "proportionPoints", threeD = True)
 	
