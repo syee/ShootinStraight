@@ -70,18 +70,18 @@ def generate_shot_chart2(playerID, playerName, year1, year2, chartType, threeD):
 # players.to_csv("shots.csv")
 DB = psycopg2.connect("dbname=ShootinStraight")
 c = DB.cursor()
-query = "SELECT * from players_2014 where \"DISPLAY_LAST_COMMA_FIRST\"='Curry, Stephen'"
+query = "SELECT * from players_2014 where \"DISPLAY_LAST_COMMA_FIRST\"='Jordan, DeAndre'"
 c.execute(query)
 for row in c.fetchall():
 	# print row
 	print row[4]
 	print row[1]
 	# savorgas2.generate_shot_chartBasic(int(row[4]), str(row[1]), 2015, 2016)
-	# generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "fieldGoal", False)
-	# generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "proportionPoints", False)
-	savorgas2.generate_shot_chart_makesMisses(int(row[4]), str(row[1]), 2015, 2016)
-	generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "proportionPoints", False)
-	savorgas2.generate_shot_chartAdvanced(203476, "Dieng, Gorgui", 2015, 2016, chartType = "proportionPoints", threeD = True)
+	generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "fieldGoal", False)
+	# generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "rawPoints", True)
+	# savorgas2.generate_shot_chart_makesMisses(int(row[4]), str(row[1]), 2015, 2016)
+	# generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "rawPoints", True)
+	# savorgas2.generate_shot_chartAdvanced(203476, "Dieng, Gorgui", 2015, 2016, chartType = "proportionPoints", threeD = True)
 	
 
 # init_games()
