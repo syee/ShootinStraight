@@ -2,6 +2,7 @@
 
 
 {% block content %}
+
   <form method="post">
     <select name="playerName">
       <option value="None">--------Select a player(Default is all players)--------</option>
@@ -26,107 +27,90 @@
     </select>
     <input type="submit" value="sort" class="btn btn-xs btn-default">
   </form>
-  {% for greeting in greetings1 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings2 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings3 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings4 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings5 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings6 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings7 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings8 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings9 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings10 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings11 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-
-  {% for greeting in greetings12 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings13 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings14 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings15 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings16 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings17 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings18 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-
-  {% for greeting in greetings19 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings20 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings21 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings22 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings23 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings24 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-  {% for greeting in greetings25 %}
-    <div class="jumbotron">{{ greeting.render() | safe }}</div>
-    <br>
-  {% endfor %}
-
+  <table>
+    <tr>
+      {% for greeting in greetings1 %}
+        <th>
+          <div class="label label-info">
+            {{greeting.playerName}}
+          </div>
+          <div class="post-content">
+            Chart Type: {{greeting.chartType}}
+          </div>
+          <div class="jumbotron">{{ greeting.render() | safe }}</div>
+        </th>
+      {% endfor %}
+    </tr>
+    <tr>
+      {% for greeting in greetings2 %}
+        <th>
+          <div class="label label-info">
+            {{greeting.playerName}}
+          </div>
+          <div class="post-content">
+            Chart Type: {{greeting.chartType}}
+          </div>
+          <div class="jumbotron">{{ greeting.render() | safe }}</div>
+        </th>
+      {% endfor %}
+    </tr>
+    <tr>
+      {% for greeting in greetings3 %}
+        <th>
+          <div class="label label-info">
+            {{greeting.playerName}}
+          </div>
+          <div class="post-content">
+            Chart Type: {{greeting.chartType}}
+          </div>
+          <div class="jumbotron">{{ greeting.render() | safe }}</div>
+        </th> 
+      {% endfor %}
+    </tr>
+    <tr>
+      {% for greeting in greetings4 %}
+        <th>
+          <div class="label label-info">
+            {{greeting.playerName}}
+          </div>
+          <div class="post-content">
+            Chart Type: {{greeting.chartType}}
+          </div>
+          <div class="jumbotron">{{ greeting.render() | safe }}</div>
+        </th>
+      {% endfor %}
+    </tr>
+    <tr>
+      {% for greeting in greetings5 %}
+        <th>
+          <div class="label label-info">
+            {{greeting.playerName}}
+          </div>
+          <div class="post-content">
+            Chart Type: {{greeting.chartType}}
+          </div>
+          <div class="jumbotron">{{ greeting.render() | safe }}</div>
+        </th> 
+      {% endfor %}
+    </tr>
+    <script>
+    $("table").each(function () {
+        var $this = $(this);
+        var newrows = [];
+        $this.find("tr").each(function () {
+            var i = 0;
+            $(this).find("td,th").each(function () {
+                i++;
+                if (newrows[i] === undefined) {
+                    newrows[i] = $("<tr></tr>");
+                }
+                newrows[i].append($(this));
+            });
+        });
+        $this.find("tr").remove();
+        $.each(newrows, function () {
+            $this.append(this);
+        });
+    });
+  </script>
 {% endblock %}
