@@ -173,11 +173,11 @@ class Handler(webapp2.RequestHandler):
 class Front(Handler):
     def get(self):
         greetings1 = Greeting.query(Greeting.playerName == playerList[0]).order(Greeting.date)
-            greetings2 = Greeting.query(Greeting.playerName == playerList[1]).order(Greeting.date)
-            greetings3 = Greeting.query(Greeting.playerName == playerList[2]).order(Greeting.date)
-            greetings4 = Greeting.query(Greeting.playerName == playerList[3]).order(Greeting.date)
-            greetings5 = Greeting.query(Greeting.playerName == playerList[4]).order(Greeting.date)
-            self.render('front.html', greetings1 = greetings1, greetings2 = greetings2, greetings3 = greetings3, greetings4 = greetings4, greetings5 = greetings5)
+        greetings2 = Greeting.query(Greeting.playerName == playerList[1]).order(Greeting.date)
+        greetings3 = Greeting.query(Greeting.playerName == playerList[2]).order(Greeting.date)
+        greetings4 = Greeting.query(Greeting.playerName == playerList[3]).order(Greeting.date)
+        greetings5 = Greeting.query(Greeting.playerName == playerList[4]).order(Greeting.date)
+        self.render('front.html', greetings1 = greetings1, greetings2 = greetings2, greetings3 = greetings3, greetings4 = greetings4, greetings5 = greetings5)
 
     def post(self):
         #These dropdowns could be error checked
@@ -312,6 +312,6 @@ class PlayerComparisons(Handler):
 app = webapp2.WSGIApplication([('/', Front),
                             # ('/upload', MainPage),
                             ('/playercomparisons', PlayerComparisons),
-                            ('/img', Image)]
+                            ('/img', Image)], debug=True)
                             # ('/sign', Guestbook)],
-                            debug=True)
+                            # debug=True)
