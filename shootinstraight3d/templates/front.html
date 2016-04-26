@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+  <form method="post">
+    <select name="playerName">
+      <option value="None">--------Select a player(Default is all players)--------</option>
+      <option value="Curry, Stephen">Stephen Curry</option>
+      <option value="Bryant, Kobe">Kobe Bryant</option>
+      <option value="James, Lebron">Lebron James</option>
+      <option value="Nowitzki, Dirk">Dirk Nowitzki</option>
+      <option value="Jordan, Deandre">Deandre Jordan</option>
+    </select>
+    <select name="chartType">
+      <option value="None">-----Select a chart type(Default is all types)-----</option>
+      <option value="All Shots">All Shots</option>
+      <option value="Makes Misses">Makes and Misses</option>
+      <option value="Field Goal Percentage">Field Goal Percentage</option>
+      <option value="Raw Points">Raw Points</option>
+      <option value="Point Frequency">Point Frequency</option>
+    </select>
+    <select name="dimensions">
+      <option value="None">-----Select 2D or 3D (Default is 2D)-----</option>
+      <option value="2D">2D</option>
+      <option value="3D">3D</option>
+    </select>
+    <input type="submit" value="sort" class="btn btn-xs btn-default">
+  </form>
+  {% for greeting in greetings1 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings2 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings3 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings4 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings5 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings6 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings7 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings8 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings9 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings10 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings11 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+
+  {% for greeting in greetings12 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings13 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings14 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings15 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings16 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings17 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings18 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+
+  {% for greeting in greetings19 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings20 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings21 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings22 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings23 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings24 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+  {% for greeting in greetings25 %}
+    <div class="jumbotron">{{ greeting.render() | safe }}</div>
+    <br>
+  {% endfor %}
+
+{% endblock %}

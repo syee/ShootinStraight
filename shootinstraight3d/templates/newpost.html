@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+  <li><a href="/">Home</a></li>
+  <li class="active"><a href="/newpost">New Post</a></li>
+  {% if user %}
+    <li><a href="/users/{{user.key().id()}}">Profile</a></li>
+    <li><a href="/created">Created</a></li>
+    <li><a href="/applied">Applied</a></li>
+    <li><a href="/connections">Connections</a></li>
+    <li><a href="/users">Users</a></li>
+  {% endif %}
+  <li><a href="/FAQ">FAQ</a></li>
+{% endblock %}
+
+{% block content %}
+
+  <h2>New Post</h2>
+
+    <form method="post" class="jumbotron">
+
+    <div>
+      <label>
+        <div>Title</div>
+        <input type="text" class="form-control" name="title" value="{{title}}" required autofocus>
+      </label>
+    </div>
+
+    <div>
+
+      <label>
+        <div>Subject</div>
+        <select name="subjectList">
+          <option value="American Studies">American Studies</option>
+          <option value="Anthropology">Anthropology</option>
+          <option value="Art History">Art History</option>
+          <option value="Biochemistry">Biochemistry</option>
+          <option value="Biology">Biology</option>
+          <option value="Chemistry">Chemistry</option>
+          <option value="Classical Studies">Classical Studies</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Economics">Economics</option>
+          <option value="Educational Studies">Educational Studies</option>
+          <option value="Engineering">Engineering</option>
+          <option value="English">English</option>
+          <option value="Environmental Studies">Environmental Studies</option>
+          <option value="French Studies">French Studies</option>
+          <option value="German Studies">German Studies</option>
+          <option value="Hispanic Studies">Hispanic Studies</option>
+          <option value="History">History</option>
+          <option value="International Studies">International Studies</option>
+          <option value="Italian Studies">Italian Studies</option>
+          <option value="Mathematics">Mathematics</option>
+          <option value="Music">Music</option>
+          <option value="Neuroscience">Neuroscience</option>
+          <option value="Philosophy">Philosophy</option>
+          <option value="Physics">Physics</option>
+          <option value="Political Science">Political Science</option>
+          <option value="Psychology">Psychology</option>
+          <option value="Public Policy and Law">Public Policy and Law</option>
+          <option value="Jewish Studies">Jewish Studies</option>
+          <option value="Religion">Religion</option>
+          <option value="Russian">Russian</option>
+          <option value="Sociology">Sociology</option>
+          <option value="Studio Arts">Studio Arts</option>        
+          <option value="Theater and Dance">Theater and Dance</option>
+          <option value="Urban Studies">Urban Studies</option>
+          <option value="Women, Gender, and Sexuality">Women, Gender, and Sexuality</option>
+       </select>
+      </label>
+    </div>
+
+    <div>
+      <label>
+        <div>Wage (USD per hour): $</div>
+        <input type="number" min="0" max="200" class="form-control" name="wage" value="{{wage}}" required autofocus>
+      </label>
+    </div>
+
+    <div>
+      <label>
+        <div>Meetings</div>
+        <select name="meetingsList">
+          <option value="1">Once</option>
+          <option value="2">Several</option>
+          <option value="3">More...</option>
+       </select>
+      </label>
+      <div class="error">{{error_meetings}}</div>
+    </div>
+
+    <div>
+      <label>
+        <div>Difficulty</div>
+        <select name="difficultyList">
+          <option value="1">Easy</option>
+          <option value="2">Medium</option>
+          <option value="3">Hard</option>
+          <option value="4">Very Hard</option>
+       </select>
+      </label>
+      <div class="error">{{error_difficulty}}</div>
+    </div>
+
+      <div>
+        <b>Description</b>
+        </div>
+      <textarea class="form-control" name="content" rows="10" placeholder="(HTML formatting available)">{{content}}</textarea>
+      <div class="error">{{error}}</div>
+      <br><br>
+      <input type="submit" class="btn btn-primary">
+    </form>
+{% endblock %}

@@ -16,75 +16,44 @@ indexes:
   - name: date
     direction: desc
 
-- kind: Post
+- kind: Greeting
   properties:
-  - name: created
-    direction: desc
-  - name: difficulty
-    direction: desc
+  - name: chartType
+  - name: playerName
+  - name: date
 
-- kind: Post
+- kind: Greeting
   properties:
-  - name: created
-    direction: desc
-  - name: meetings
-    direction: desc
+  - name: playerName
+  - name: date
 
-- kind: Post
+- kind: Greeting
   properties:
-  - name: created
-    direction: desc
-  - name: wage
-    direction: desc
+  - name: playerName
+  - name: date
 
-- kind: Post
+- kind: Greeting
   properties:
-  - name: subject
-  - name: created
-    direction: desc
+  - name: dimensions
+  - name: playerName
+  - name: date
 
-- kind: Post
+- kind: Greeting
   properties:
-  - name: subject
-  - name: created
-    direction: desc
-  - name: difficulty
-    direction: desc
+  - name: dimensions
+  - name: playerName
+  - name: date
 
-- kind: Post
+- kind: Greeting
   properties:
-  - name: subject
-  - name: created
-    direction: desc
-  - name: wage
-    direction: desc
+  - name: chartType
+  - name: dimensions
+  - name: playerName
+  - name: date
 
-- kind: Post
+- kind: Greeting
   properties:
-  - name: subject
-  - name: difficulty
-    direction: desc
-
-- kind: Post
-  properties:
-  - name: subject
-  - name: meetings
-    direction: desc
-
-- kind: Post
-  properties:
-  - name: subject
-  - name: wage
-    direction: desc
-
-- kind: User
-  properties:
-  - name: email
-  - name: created
-    direction: desc
-
-- kind: User
-  properties:
-  - name: email_hash
-  - name: created
-    direction: desc
+  - name: chartType
+  - name: dimensions
+  - name: playerName
+  - name: date

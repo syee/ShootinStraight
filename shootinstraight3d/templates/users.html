@@ -1,0 +1,45 @@
+<div class="post">
+  <div class="post-heading">
+    Username: 
+    <a href="/users/{{user.key().id()}}" class="label label-warning">
+      {{user.name}}
+    </a>
+    <div class="post-content">
+      But most people call me {{user.nickname}}
+    </div>
+
+    <div class="post-content">
+      Major: {{user.major}}
+    </div>
+
+    <div class="post-content">
+      Class of {{user.year}}
+    </div>
+
+    <div class="post-content">
+      Tutor Rating: {{user.tutorRating}}
+    </div>
+    <div class="post-content">
+      Number of Jobs as a Tutor: {{user.numberTutorJobs}}
+    </div>
+    <div class="post-content">
+      Tutee Rating: {{user.tuteeRating}}
+    </div>
+    <div class="post-content">
+      Number of Jobs as a Tutee: {{user.numberTuteeJobs}}
+    </div>
+
+    <h4>
+      <div class="label label-info">
+        I joined Trinity Tutor: {{user.created.strftime("%b %d, %Y")}}
+      </div>
+    </h4>
+  </div>
+  <hr>
+
+  <div class="post-content">
+
+  </div>
+
+  
+</div>
