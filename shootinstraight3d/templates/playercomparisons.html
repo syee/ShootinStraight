@@ -4,8 +4,16 @@
 {% block content %}
 
   <form method="post">
-    <select name="playerName">
-      <option value="None">--------Select a player(Default is all players)--------</option>
+    <select name="playerName1">
+      <option value="None">--------Select a player(Default is Stephen Curry)--------</option>
+      <option value="Curry, Stephen">Stephen Curry</option>
+      <option value="Bryant, Kobe">Kobe Bryant</option>
+      <option value="James, Lebron">Lebron James</option>
+      <option value="Nowitzki, Dirk">Dirk Nowitzki</option>
+      <option value="Jordan, Deandre">Deandre Jordan</option>
+    </select>
+    <select name="playerName2">
+      <option value="None">--------Select a player(Default is Deandre Jordan)--------</option>
       <option value="Curry, Stephen">Stephen Curry</option>
       <option value="Bryant, Kobe">Kobe Bryant</option>
       <option value="James, Lebron">Lebron James</option>
@@ -52,45 +60,6 @@
           </div>
           <div class="bg-primary">{{ greeting.render() | safe }}</div>
         </th>
-      {% endfor %}
-    </tr>
-    <tr>
-      {% for greeting in greetings3 %}
-        <th>
-          <div class="label label-info">
-            {{greeting.playerName}}
-          </div>
-          <div class="post-content">
-            Chart Type: {{greeting.chartType}}
-          </div>
-          <div class="bg-primary">{{ greeting.render() | safe }}</div>
-        </th> 
-      {% endfor %}
-    </tr>
-    <tr>
-      {% for greeting in greetings4 %}
-        <th>
-          <div class="label label-info">
-            {{greeting.playerName}}
-          </div>
-          <div class="post-content">
-            Chart Type: {{greeting.chartType}}
-          </div>
-          <div class="bg-primary">{{ greeting.render() | safe }}</div>
-        </th>
-      {% endfor %}
-    </tr>
-    <tr>
-      {% for greeting in greetings5 %}
-        <th>
-          <div class="label label-info">
-            {{greeting.playerName}}
-          </div>
-          <div class="post-content">
-            Chart Type: {{greeting.chartType}}
-          </div>
-          <div class="bg-primary">{{ greeting.render() | safe }}</div>
-        </th> 
       {% endfor %}
     </tr>
     <script>

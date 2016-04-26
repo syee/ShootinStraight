@@ -149,7 +149,7 @@ class Guestbook(webapp2.RequestHandler):
 
         avatar = self.request.get('img')
         if avatar:
-            avatar = images.resize(avatar, 256, 256)
+            avatar = images.resize(avatar, 512, 512)
             greeting.avatar = avatar
         greeting.put()
 
@@ -221,8 +221,93 @@ class Front(Handler):
             greetings5 = Greeting.query(Greeting.playerName == playerList[4], Greeting.chartType == chartType).order(Greeting.date)
             self.render('front.html', greetings1 = greetings1, greetings2 = greetings2, greetings3 = greetings3, greetings4 = greetings4, greetings5 = greetings5)
 
+
+class PlayerComparisons(Handler):
+    def get(self):
+        greetings1 = Greeting.query(Greeting.playerName == playerList[0], Greeting.dimensions == "3D").order(Greeting.date)
+        greetings2 = Greeting.query(Greeting.playerName == playerList[4], Greeting.dimensions == "3D").order(Greeting.date)
+        self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+
+    def post(self):
+        #These dropdowns could be error checked
+        playerName1 = self.request.get('playerName1')
+        playerName2 = self.request.get('playerName2')
+        chartType = self.request.get('chartType')
+        dimensions = self.request.get('dimensions')
+        if (playerName1 != 'None') and (playerName2 != 'None')and (chartType != 'None') and (dimensions != 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerName1, Greeting.chartType == chartType, Greeting.dimensions == dimensions).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerName2, Greeting.chartType == chartType, Greeting.dimensions == dimensions).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        if (playerName1 == 'None') and (playerName2 != 'None') and (chartType != 'None') and (dimensions != 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerList[0], Greeting.chartType == chartType, Greeting.dimensions == dimensions).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerName2, Greeting.chartType == chartType, Greeting.dimensions == dimensions).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        if (playerName1 != 'None') and (playerName2 == 'None') and (chartType != 'None') and (dimensions != 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerName1, Greeting.chartType == chartType, Greeting.dimensions == dimensions).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerList[4], Greeting.chartType == chartType, Greeting.dimensions == dimensions).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        if (playerName1 == 'None') and (playerName2 == 'None') and (chartType != 'None') and (dimensions != 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerList[0], Greeting.chartType == chartType, Greeting.dimensions == dimensions).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerList[4], Greeting.chartType == chartType, Greeting.dimensions == dimensions).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+
+
+        if (playerName1 != 'None') and (playerName2 != 'None') and (chartType != 'None') and (dimensions == 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerName1, Greeting.chartType == chartType).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerName2, Greeting.chartType == chartType).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        if (playerName1 == 'None') and (playerName2 != 'None') and (chartType != 'None') and (dimensions == 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerList[0], Greeting.chartType == chartType).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerName2, Greeting.chartType == chartType).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        if (playerName1 != 'None') and (playerName2 == 'None') and (chartType != 'None') and (dimensions == 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerName1, Greeting.chartType == chartType).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerList[4], Greeting.chartType == chartType).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        if (playerName1 == 'None') and (playerName2 == 'None') and (chartType != 'None') and (dimensions == 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerList[0], Greeting.chartType == chartType).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerList[4], Greeting.chartType == chartType).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        
+
+        if (playerName1 != 'None') and (playerName2 != 'None') and (chartType == 'None') and (dimensions == 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerName1).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerName2).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        if (playerName1 == 'None') and (playerName2 != 'None') and (chartType == 'None') and (dimensions == 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerList[0]).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerName2).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        if (playerName1 != 'None') and (playerName2 == 'None') and (chartType == 'None') and (dimensions == 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerName1).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerList[4]).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        if (playerName1 == 'None') and (playerName2 == 'None') and (chartType == 'None') and (dimensions == 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerList[0]).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerList[4]).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+
+
+        if (playerName1 != 'None') and (playerName2 != 'None')and (chartType == 'None') and (dimensions != 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerName1, Greeting.dimensions == dimensions).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerName2, Greeting.dimensions == dimensions).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        if (playerName1 == 'None') and (playerName2 != 'None')and (chartType == 'None') and (dimensions != 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerList[0], Greeting.dimensions == dimensions).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerName2, Greeting.dimensions == dimensions).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        if (playerName1 != 'None') and (playerName2 == 'None')and (chartType == 'None') and (dimensions != 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerName1, Greeting.dimensions == dimensions).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerList[4], Greeting.dimensions == dimensions).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+        if (playerName1 == 'None') and (playerName2 == 'None')and (chartType == 'None') and (dimensions != 'None'):
+            greetings1 = Greeting.query(Greeting.playerName == playerList[0], Greeting.dimensions == dimensions).order(Greeting.date)
+            greetings2 = Greeting.query(Greeting.playerName == playerList[4], Greeting.dimensions == dimensions).order(Greeting.date)
+            self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
+
 app = webapp2.WSGIApplication([('/', Front),
                             ('/upload', MainPage),
+                            ('/playercomparisons', PlayerComparisons),
                             ('/img', Image),
                             ('/sign', Guestbook)],
                             debug=True)
