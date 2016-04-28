@@ -314,9 +314,19 @@ class PlayerComparisons(Handler):
             greetings2 = Greeting.query(Greeting.playerName == playerList[4], Greeting.dimensions.IN([dimensions,'None'])).order(Greeting.date)
             self.render('playercomparisons.html', greetings1 = greetings1, greetings2 = greetings2)
 
+class FAQ(Handler):
+    def get(self):
+        self.render('faq.html')
+
+class Resources(Handler):
+    def get(self):
+        self.render('resources.html')
+
 app = webapp2.WSGIApplication([('/', Front),
                             ('/playercomparisons', PlayerComparisons),
-                            ('/img', Image)],
+                            ('/img', Image),
+                            ('/faq', FAQ),
+                            ('/resources', Resources)],
                             debug=True)
 
 
