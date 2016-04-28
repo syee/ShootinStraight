@@ -74,7 +74,7 @@ def generate_shot_chart2(playerID, playerName, year1, year2, chartType, threeD):
 # players.to_csv("shots.csv")
 DB = psycopg2.connect("dbname=ShootinStraight")
 c = DB.cursor()
-query = "SELECT * from players_2014 where \"DISPLAY_LAST_COMMA_FIRST\"='Bryant, Kobe'"
+query = "SELECT * from players_2014 where \"DISPLAY_LAST_COMMA_FIRST\"='Curry, Stephen'"
 c.execute(query)
 for row in c.fetchall():
 	# print row
