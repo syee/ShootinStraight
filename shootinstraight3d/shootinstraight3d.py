@@ -187,7 +187,7 @@ class Front(Handler):
         chartType = self.request.get('chartType')
         dimensions = self.request.get('dimensions')
         if (playerName != 'None') and (chartType != 'None') and (dimensions != 'None'):
-            greetings1 = Greeting.query(Greeting.playerName == playerName, Greeting.chartType == chartType, Greeting.dimensions == dimensions).order(Greeting.date)
+            greetings1 = Greeting.query(Greeting.playerName == playerName, Greeting.chartType.IN([chartType, 'None']), Greeting.dimensions.IN([dimensions,'None'])).order(Greeting.date)
             self.render('front.html', greetings1 = greetings1)
         if (playerName == 'None') and (chartType != 'None') and (dimensions != 'None'):
             greetings1 = Greeting.query(Greeting.playerName == playerList[0], Greeting.chartType.IN([chartType, 'None']), Greeting.dimensions.IN([dimensions,'None'])).order(Greeting.date)
@@ -203,7 +203,7 @@ class Front(Handler):
             greetings1 = Greeting.query(Greeting.playerName == playerName).order(Greeting.date)
             self.render('front.html', greetings1 = greetings1)
         if (playerName != 'None') and (chartType == 'None') and (dimensions != 'None'):
-            greetings1 = Greeting.query(Greeting.playerName == playerName, Greeting.dimensions == dimensions).order(Greeting.date)
+            greetings1 = Greeting.query(Greeting.playerName == playerName, Greeting.dimensions.IN([dimensions,'None'])).order(Greeting.date)
             self.render('front.html', greetings1 = greetings1)
         if (playerName == 'None') and (chartType == 'None') and (dimensions == 'None'):
             greetings1 = Greeting.query(Greeting.playerName == playerList[0]).order(Greeting.date)
