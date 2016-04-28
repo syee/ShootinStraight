@@ -74,7 +74,7 @@ def generate_shot_chart2(playerID, playerName, year1, year2, chartType, threeD):
 # players.to_csv("shots.csv")
 DB = psycopg2.connect("dbname=ShootinStraight")
 c = DB.cursor()
-query = "SELECT * from players_2014 where \"DISPLAY_LAST_COMMA_FIRST\"='Bryant, Kobe'"
+query = "SELECT * from players_2014 where \"DISPLAY_LAST_COMMA_FIRST\"='Curry, Stephen'"
 c.execute(query)
 for row in c.fetchall():
 	# print row
@@ -82,7 +82,7 @@ for row in c.fetchall():
 	print row[1]
 	# savorgas2.generate_shot_chartBasic(int(row[4]), str(row[1]), 2015, 2016)
 	# generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "fieldGoal", False)
-	generate_shot_chart2(int(row[4]), str(row[1]), 2013, 2014, "rawPoints", True)
+	generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "rawPoints", True)
 	# generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "rawPoints", False)
 	# generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "proportionPoints", True)
 	# generate_shot_chart2(int(row[4]), str(row[1]), 2015, 2016, "proportionPoints", True)

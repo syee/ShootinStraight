@@ -322,6 +322,10 @@ class Resources(Handler):
     def get(self):
         self.render('resources.html')
 
+# class Kobe(Handler):
+#     def get(self):
+#         self.render('kobe.html')
+
 app = webapp2.WSGIApplication([('/', Front),
                             ('/playercomparisons', PlayerComparisons),
                             ('/img', Image),
