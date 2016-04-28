@@ -2,7 +2,7 @@ if chartType == "proportionPoints":
         # REVIESE
         cb.set_label('Relative Frequency of Points')
         cb.set_ticks([0.0, 0.10, 0.20, 0.75, 0.90])
-        cb.set_ticklabels(['0%','0.10%', '0.20%','1.5%', '2%'])
+        cb.set_ticklabels(['0%','0.20%', '0.40%','3.0%', '4.0%'])
     elif chartType == "rawPoints":
         # REVIESE
         cb.set_label('Points')

@@ -43,8 +43,8 @@ cdictRelative = {'red': [ (0.0,  0.99, 0.99),
     elif chartType == "rawPoints":
         # REVIESE
         cb.set_label('Points')
-        cb.set_ticks([0.0, 0.01, 0.052, 0.50, 0.95])
-        cb.set_ticklabels(['0','5', '28','268', '509'])
+        cb.set_ticks([0.0, 0.10, 0.25, 0.50, 0.95])
+        cb.set_ticklabels(['0%','50', '125','250', '475'])
     elif chartType == "allShots":
 
         # REVIESE

@@ -45,7 +45,7 @@
           <div class="post-content">
             Chart Type: {{greeting.chartType}}
           </div>
-          <div class="bg-primary">{{ greeting.render() | safe }}</div>
+          <div>{{ greeting.render() | safe }}</div>
         </th>
       {% endfor %}
     </tr>
@@ -81,5 +81,10 @@
             $this.append(this);
         });
     });
+    $('img')
+        .wrap('<span style="display:inline-block"></span>')
+        .css('display', 'block')
+        .parent()
+        .zoom({magnify: '2'});
   </script>
 {% endblock %}

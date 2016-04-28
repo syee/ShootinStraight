@@ -24,6 +24,12 @@ handlers:
 - url: /.*
   script: shootinstraight3d.app
 
+- url: /image/.*\svg
+  static_dir: public/image
+  http_headers:
+    content-type: image/svg+xml
+
+
 libraries:
 - name: webapp2
   version: latest
